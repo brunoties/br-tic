@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Atendimento</title>
+</h:head>
+<h:body>
+
+	<h1>Atendimento</h1>
+
+	<h:form id="form-principal">
+
+		<p:messages />
+
+		<p:toolbar style="margin-top: 20px">
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/Atendimento/atendimento" />
+				<p:commandButton update="@form" value="Salvar" id="btnSalvar" />
+			</p:toolbarGroup>
+
+			<p:toolbarGroup align="right">
+				<p:button value="Pesquisar"
+					outcome="/Atendimento/pesquisar-atendimento" />
+			</p:toolbarGroup>
+		</p:toolbar>
+
+		<p:panelGrid id="painel" columns="4" style="margin-top: 20px">
+
+			<p:outputLabel value="Código" for="codigo" />
+			<p:inputText id="codigo" readonly="true" />
+
+			<p:outputLabel value="Usuário" for="usuario" />
+			<p:inputText id="usuario" readonly="true" />
+
+			<p:outputLabel value="Cliente" for="cliente" />
+
+			<h:panelGroup>
+				<p:selectOneMenu value="#{novoAtendimentoBean.cliente}" id="cliente"
+					required="true">
+					<f:selectItem itemLabel="Selecione" itemValue="" />
+				</p:selectOneMenu>
+				<p:button outcome="/Usuario/cadastro-usuario" icon="ui-icon-pencil"
+					title="Novo" style="text-align= right" />
+
+			</h:panelGroup>
+			<p:outputLabel value="Solicitante" for="solicitante" />
+			<p:inputText id="solicitante" required="true" />
+
+			<p:outputLabel value="Item de Configuração" for="itemConfiguracao" />
+			<p:inputText id="itemConfiguracao" required="true" size="50" />
+
+			<h:outputLabel />
+			<h:outputLabel />
+
+			<p:outputLabel value="Solicitação" for="solicitacao" />
+			<p:inputTextarea id="solicitacao" />
+			
+			<h:outputLabel />
+			<h:outputLabel />
+			
+			<p:outputLabel value="Anexar PrintScreen do Erro" />
+			<p:fileUpload showButtons="false" label="Procurar..." auto="true" />
+			
+			<h:outputLabel />
+			<h:outputLabel />		
+			
+			<p:outputLabel value="Observações" for="observacoes" />
+			<p:inputTextarea id="observacoes" />	
+
+		</p:panelGrid>
+
+	</h:form>
+
+</h:body>
+
+</html>
