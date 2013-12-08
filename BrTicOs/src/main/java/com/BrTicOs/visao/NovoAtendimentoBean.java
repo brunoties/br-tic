@@ -9,9 +9,9 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class NovoAtendimentoBean implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1207624101893394523L;
 	
-	private String cliente;
+	private String cliente = new String();
 
 	public String getCliente() {
 		return cliente;
