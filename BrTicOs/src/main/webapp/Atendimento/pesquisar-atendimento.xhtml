@@ -34,7 +34,7 @@
 			<p:outputLabel for="codigo" value="Código" />
 			<p:inputText id="codigo" size="10" />
 
-			<p:outputLabel value="Data de Criação" />
+			<p:outputLabel value="Data de Abertura" />
 			<h:panelGroup>
 
 				<p:calendar size="10" pattern="dd/MM/yyyy" />
@@ -43,8 +43,8 @@
 
 			</h:panelGroup>
 			
-			<p:outputLabel for="usuario" value="Usuário" />
-			<p:inputText id="usuario" />
+			<p:outputLabel for="solicitante" value="Solicitante" />
+			<p:inputText id="solicitante" />
 
 			<p:outputLabel value="Status" />
 			<p:selectManyCheckbox>
@@ -68,7 +68,25 @@
 			paginatorAlwaysVisible="false"
 			paginatorPosition="bottom">
 			
+			<p:column headerText="Código" style="text-align: center" width="80">
+				<h:outputText value="100" />
+			</p:column>
+		
+			<p:column headerText="Data e Hora Abertura" style="text-align:center" width="100">
+				<h:outputText value="01/01/2010 09:45" />
+			</p:column>
 			
+			<p:column headerText="Status" style="text-align:center" width="80">
+				<h:outputText value="Aguardando Atendimento" />
+			</p:column>
+			
+			<p:column headerText="Solicitante">
+				<h:outputText value="Cliente" />
+			</p:column>
+			
+			<p:column headerText="Ações" style="text-align:center" width="50">
+				<p:button icon="ui-icon-pencil" title="Editar" />
+			</p:column>
 		
 		</p:dataTable>
 
