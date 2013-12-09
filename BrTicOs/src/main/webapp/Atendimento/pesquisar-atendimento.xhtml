@@ -7,6 +7,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="software.css"  />
 	<title>Pesquisar Atendimento</title>
 </h:head>
 <h:body>
@@ -14,26 +15,63 @@
 	<h1>Pesquisar Atendimento</h1>
 
 	<h:form id="form-principal">
-	
+
 		<p:messages />
-		
+
 		<p:toolbar style="margin-top: 20px">
 			<p:toolbarGroup>
-				<p:commandButton value="Pesquisar" id="btnPesquisar"/>
+				<p:commandButton value="Pesquisar" id="btnPesquisar" />
 			</p:toolbarGroup>
 
 			<p:toolbarGroup align="right">
 				<p:button value="Novo" outcome="/Atendimento/novo-atendimento" />
 			</p:toolbarGroup>
 		</p:toolbar>
-	
-		<p:panelGrid id="pan-criterios-busca" columns="2" style=" width: 100%; margin-top: 20px">
-		
+
+		<p:panelGrid id="pan-criterios-busca" columns="2"
+			style=" width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
 			<p:outputLabel for="codigo" value="Código" />
-			<p:autoComplete />
-					
+			<p:inputText id="codigo" size="10" />
+
+			<p:outputLabel value="Data de Criação" />
+			<h:panelGroup>
+
+				<p:calendar size="10" pattern="dd/MM/yyyy" />
+					a
+				<p:calendar size="10" pattern="dd/MM/yyyy" />
+
+			</h:panelGroup>
+			
+			<p:outputLabel for="usuario" value="Usuário" />
+			<p:inputText id="usuario" />
+
+			<p:outputLabel value="Status" />
+			<p:selectManyCheckbox>
+			
+				<f:selectItem itemLabel="Aguardando Atendimento" />
+				<f:selectItem itemLabel="Em Atendimento" />
+				<f:selectItem itemLabel="Pendência" />
+				<f:selectItem itemLabel="Fechada" />
+			
+			</p:selectManyCheckbox>
+
 		</p:panelGrid>
-	
+		
+		<p:dataTable value="#{pesquisaAtendimentoBean.atendimentosFiltrados}" 
+			var="atendimento"
+			style="margin-top: 20px"
+			emptyMessage="Nenhum Atendimento Encontrado"
+			rows="20"
+			rowsPerPageTemplate="10, 20, 30"
+			paginator="true"
+			paginatorAlwaysVisible="false"
+			paginatorPosition="bottom">
+			
+			
+		
+		</p:dataTable>
+
 	</h:form>
 
 </h:body>

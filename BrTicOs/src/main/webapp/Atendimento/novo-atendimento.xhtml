@@ -7,6 +7,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="css" name="software.css"  />
 	<title>Novo Atendimento</title>
 </h:head>
 <h:body>
@@ -29,8 +30,8 @@
 			</p:toolbarGroup>
 		</p:toolbar>
 
-		<p:panelGrid id="painel" columns="4"
-			style="width: 100%; margin-top: 20px">
+		<p:panelGrid id="painel" columns="4" style="width: 100%; margin-top: 20px"
+			columnClasses="rotulo, campo, rotulo, campo">
 
 			<p:outputLabel value="Código" for="codigo" />
 			<h:outputLabel id="codigo" value="123" />
