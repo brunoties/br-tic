@@ -15,7 +15,7 @@
 	<build>
 
 		<!-- Configurando o nome do WAR -->
-		<finalName>BrunoPedidoVenda</finalName>
+		<finalName>br-tic</finalName>
 
 		<plugins>
 			<plugin>

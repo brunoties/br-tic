@@ -24,17 +24,19 @@
 			</p:toolbarGroup>
 
 			<p:toolbarGroup align="right">
-				<p:button value="Pesquisar" outcome="/Atendimento/pesquisar-atendimento" />
+				<p:button value="Pesquisar"
+					outcome="/Atendimento/pesquisar-atendimento" />
 			</p:toolbarGroup>
 		</p:toolbar>
 
-		<p:panelGrid id="painel" columns="4" style="width: 100%; margin-top: 20px">
+		<p:panelGrid id="painel" columns="4"
+			style="width: 100%; margin-top: 20px">
 
 			<p:outputLabel value="Código" for="codigo" />
-			<p:inputText id="codigo" readonly="true" />
+			<h:outputLabel id="codigo" value="123" />
 
 			<p:outputLabel value="Usuário" for="usuario" />
-			<p:inputText id="usuario" readonly="true" />
+			<h:outputLabel id="usuario" value="Usuário logado" />
 
 			<p:outputLabel value="Cliente" for="cliente" />
 
@@ -43,8 +45,8 @@
 					required="true">
 					<f:selectItem itemLabel="Selecione" itemValue="" />
 				</p:selectOneMenu>
-				<p:button outcome="/Usuario/cadastro-usuario" icon="ui-icon-pencil"
-					title="Novo" style="text-align= right" />
+				<p:button outcome="/Usuario/cadastro-usuario"
+					icon="ui-icon-plusthick" title="Novo" style="text-align= right" />
 
 			</h:panelGroup>
 			<p:outputLabel value="Solicitante" for="solicitante" />
@@ -57,19 +59,28 @@
 			<h:outputLabel />
 
 			<p:outputLabel value="Solicitação" for="solicitacao" />
-			<p:inputText id="solicitacao" required="true" size="80"/>
-			
+			<p:inputText id="solicitacao" required="true" size="80" />
+
 			<h:outputLabel />
 			<h:outputLabel />
-			
+
 			<p:outputLabel value="Anexar PrintScreen do Erro" />
-			<p:fileUpload showButtons="false" label="Procurar..." auto="true"  />
-			
+
+			<h:panelGroup>
+				<p:fileUpload
+					fileUploadListener="#{atendimentoBean.handleFileUpload}"
+					mode="advanced" dragDropSupport="false" update="messages-file"
+					sizeLimit="100000" fileLimit="1"
+					allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+				<p:growl id="messages-file" showDetail="true" />
+			</h:panelGroup>
+
 			<h:outputLabel />
-			<h:outputLabel />		
-			
+			<h:outputLabel />
+
 			<p:outputLabel value="Observações" for="observacoes" />
-			<p:inputTextarea id="observacoes" />	
+			<p:inputTextarea id="observacoes" />
 
 		</p:panelGrid>
 

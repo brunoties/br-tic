@@ -14,7 +14,26 @@
 	<h1>Pesquisar Atendimento</h1>
 
 	<h:form id="form-principal">
+	
+		<p:messages />
+		
+		<p:toolbar style="margin-top: 20px">
+			<p:toolbarGroup>
+				<p:commandButton value="Pesquisar" id="btnPesquisar"/>
+			</p:toolbarGroup>
 
+			<p:toolbarGroup align="right">
+				<p:button value="Novo" outcome="/Atendimento/novo-atendimento" />
+			</p:toolbarGroup>
+		</p:toolbar>
+	
+		<p:panelGrid id="pan-criterios-busca" columns="2" style=" width: 100%; margin-top: 20px">
+		
+			<p:outputLabel for="codigo" value="Código" />
+			<p:autoComplete />
+					
+		</p:panelGrid>
+	
 	</h:form>
 
 </h:body>
