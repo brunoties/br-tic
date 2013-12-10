@@ -4,6 +4,17 @@
 	version="3.0">
 	<display-name>br-tic</display-name>
 
+	<!-- Implementação do Weld no Tomcat -->
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
+	</listener>
+
+	<resource-env-ref>
+		<resource-env-ref-name>BeanManager</resource-env-ref-name>
+		<resource-env-ref-type>javax.enterprise.inject.spi.BeanManager</resource-env-ref-type>
+	</resource-env-ref>
+
+
 	<!-- Página default da aplicação -->
 	<welcome-file-list>
 		<welcome-file>Home.xhtml</welcome-file>
