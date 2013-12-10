@@ -1,46 +1,44 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/layout-padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="software.css"  />
-	<title>Cadastro de Papel</title>
-</h:head>
-<h:body>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h1>Cadastro de Papel</h1>
+	<ui:define name="titulo">Novo Papel</ui:define>
 
-	<h:form id="form-principal">
-	
-		<p:messages />
+	<ui:define name="corpo">
 
-		<p:toolbar style="margin-top: 20px">
-			<p:toolbarGroup>
-				<p:button value="Novo" outcome="/Papel/cadastro-papel" />
-				<p:commandButton value="Salvar" id="btnSalvar" update="@form" />
-			</p:toolbarGroup>
+		<h1>Cadastro de Papel</h1>
 
-			<p:toolbarGroup align="right">
-				<p:button value="Pesquisar" outcome="/Papel/pesquisar-papel" />
-			</p:toolbarGroup>
-		</p:toolbar>
+		<h:form id="form-principal">
 
-		<p:panelGrid id="painel" columns="2" style="margin-top: 20px"
-			columnClasses="rotulo, campo">
+			<p:messages autoUpdate="true" id="msgs" />
 
-			<p:outputLabel value="Nome" for="nome" />
-			<p:inputText id="nome" required="true" />
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/Papel/cadastro-papel" />
+					<p:commandButton value="Salvar" id="btnSalvar" update="msgs" />
+				</p:toolbarGroup>
 
-			<p:outputLabel value="Descrição" for="descricao" />
-			<p:inputText id="descricao" required="true" />
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" outcome="/Papel/pesquisar-papel" />
+				</p:toolbarGroup>
+			</p:toolbar>
 
-		</p:panelGrid>
+			<p:panelGrid id="painel" columns="2" style="margin-top: 20px"
+				columnClasses="rotulo, campo">
 
-	</h:form>
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" required="true" />
 
-</h:body>
-</html>
+				<p:outputLabel value="Descrição" for="descricao" />
+				<p:inputText id="descricao" required="true" />
+
+			</p:panelGrid>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

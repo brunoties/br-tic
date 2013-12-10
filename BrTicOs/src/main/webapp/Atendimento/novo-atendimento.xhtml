@@ -1,92 +1,90 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/layout-padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="software.css"  />
-	<title>Novo Atendimento</title>
-</h:head>
-<h:body>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h1>Novo Atendimento</h1>
+	<ui:define name="titulo">Novo Atendimento</ui:define>
 
-	<h:form id="form-principal">
+	<ui:define name="corpo">
 
-		<p:messages />
+		<h1>Novo Atendimento</h1>
 
-		<p:toolbar style="margin-top: 20px">
-			<p:toolbarGroup>
-				<p:button value="Novo" outcome="/Atendimento/novo-atendimento" />
-				<p:commandButton update="@form" value="Salvar" id="btnSalvar" />
-			</p:toolbarGroup>
+		<h:form id="form-principal">
 
-			<p:toolbarGroup align="right">
-				<p:button value="Pesquisar"
-					outcome="/Atendimento/pesquisar-atendimento" />
-			</p:toolbarGroup>
-		</p:toolbar>
+			<p:messages />
 
-		<p:panelGrid id="painel" columns="4" style="width: 100%; margin-top: 20px"
-			columnClasses="rotulo, campo, rotulo, campo">
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/Atendimento/novo-atendimento" />
+					<p:commandButton update="@form" value="Salvar" id="btnSalvar" />
+				</p:toolbarGroup>
 
-			<p:outputLabel value="Código" for="codigo" />
-			<h:outputLabel id="codigo" value="123" />
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar"
+						outcome="/Atendimento/pesquisar-atendimento" />
+				</p:toolbarGroup>
+			</p:toolbar>
 
-			<p:outputLabel value="Usuário" for="usuario" />
-			<h:outputLabel id="usuario" value="Usuário logado" />
+			<p:panelGrid id="painel" columns="4"
+				style="width: 100%; margin-top: 20px"
+				columnClasses="rotulo, campo, rotulo, campo">
 
-			<p:outputLabel value="Cliente" for="cliente" />
+				<p:outputLabel value="Código" for="codigo" />
+				<h:outputLabel id="codigo" value="123" />
 
-			<h:panelGroup>
-				<p:selectOneMenu value="#{novoAtendimentoBean.cliente}" id="cliente"
-					required="true">
-					<f:selectItem itemLabel="Selecione" itemValue="" />
-				</p:selectOneMenu>
-				<p:button outcome="/Usuario/cadastro-usuario"
-					icon="ui-icon-plusthick" title="Novo" style="text-align= right" />
+				<p:outputLabel value="Usuário" for="usuario" />
+				<h:outputLabel id="usuario" value="Usuário logado" />
 
-			</h:panelGroup>
-			<p:outputLabel value="Solicitante" for="solicitante" />
-			<p:inputText id="solicitante" required="true" />
+				<p:outputLabel value="Cliente" for="cliente" />
 
-			<p:outputLabel value="Item de Configuração" for="itemConfiguracao" />
-			<p:inputText id="itemConfiguracao" required="true" />
+				<h:panelGroup>
+					<p:selectOneMenu value="#{novoAtendimentoBean.cliente}"
+						id="cliente" required="true">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+					</p:selectOneMenu>
+					<p:button outcome="/Usuario/cadastro-usuario"
+						icon="ui-icon-plusthick" title="Novo" style="text-align= right" />
 
-			<h:outputLabel />
-			<h:outputLabel />
+				</h:panelGroup>
+				<p:outputLabel value="Solicitante" for="solicitante" />
+				<p:inputText id="solicitante" required="true" />
 
-			<p:outputLabel value="Solicitação" for="solicitacao" />
-			<p:inputText id="solicitacao" required="true" size="80" />
+				<p:outputLabel value="Item de Configuração" for="itemConfiguracao" />
+				<p:inputText id="itemConfiguracao" required="true" />
 
-			<h:outputLabel />
-			<h:outputLabel />
+				<h:outputLabel />
+				<h:outputLabel />
 
-			<p:outputLabel value="Anexar PrintScreen do Erro" />
+				<p:outputLabel value="Solicitação" for="solicitacao" />
+				<p:inputText id="solicitacao" required="true" size="80" />
 
-			<h:panelGroup>
-				<p:fileUpload
-					fileUploadListener="#{atendimentoBean.handleFileUpload}"
-					mode="advanced" dragDropSupport="false" update="messages-file"
-					sizeLimit="100000" fileLimit="1"
-					allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+				<h:outputLabel />
+				<h:outputLabel />
 
-				<p:growl id="messages-file" showDetail="true" />
-			</h:panelGroup>
+				<p:outputLabel value="Anexar PrintScreen do Erro" />
 
-			<h:outputLabel />
-			<h:outputLabel />
+				<h:panelGroup>
+					<p:fileUpload
+						fileUploadListener="#{atendimentoBean.handleFileUpload}"
+						mode="advanced" dragDropSupport="false" update="messages-file"
+						sizeLimit="100000" fileLimit="1"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
 
-			<p:outputLabel value="Observações" for="observacoes" />
-			<p:inputTextarea id="observacoes" />
+					<p:growl id="messages-file" showDetail="true" />
+				</h:panelGroup>
 
-		</p:panelGrid>
+				<h:outputLabel />
+				<h:outputLabel />
 
-	</h:form>
+				<p:outputLabel value="Observações" for="observacoes" />
+				<p:inputTextarea id="observacoes" />
 
-</h:body>
+			</p:panelGrid>
 
-</html>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

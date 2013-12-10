@@ -1,135 +1,132 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/layout-padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="software.css" />
-	<title>Atendimento</title>
-</h:head>
-<h:body>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h1>Atendimento</h1>
+	<ui:define name="titulo">Atendimento</ui:define>
 
-	<h:form id="form-principal">
+	<ui:define name="corpo">
 
-		<p:messages />
+		<h1>Atendimento</h1>
 
-		<p:toolbar style="margin-top: 20px">
-			<p:toolbarGroup>
-				<p:button value="Novo" outcome="/Atendimento/novo-atendimento" />
-				<p:commandButton update="@form" value="Salvar" id="btnSalvar" />
-				<p:commandButton update="@form" value="Fechar" id="btnFechar" />
-			</p:toolbarGroup>
+		<h:form id="form-principal">
 
-			<p:toolbarGroup align="right">
-				<p:button value="Pesquisar"
-					outcome="/Atendimento/pesquisar-atendimento" />
-			</p:toolbarGroup>
-		</p:toolbar>
+			<p:messages />
 
-		<p:panelGrid id="pan-dados-abertura" columns="4"
-			style="width: 100%; margin-top: 20px"
-			columnClasses="rotulo, campo, rotulo, campo">
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/Atendimento/novo-atendimento" />
+					<p:commandButton update="@form" value="Salvar" id="btnSalvar" />
+					<p:commandButton update="@form" value="Fechar" id="btnFechar" />
+				</p:toolbarGroup>
 
-			<p:outputLabel value="Código" for="codigo" />
-			<h:outputText value="1234" id="codigo" />
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar"
+						outcome="/Atendimento/pesquisar-atendimento" />
+				</p:toolbarGroup>
+			</p:toolbar>
 
-			<p:outputLabel value="Status" for="status" />
-			<p:selectOneMenu id="status">
-				<f:selectItem itemLabel="Em Atendimento" />
-				<f:selectItem itemLabel="Pendência" />
-			</p:selectOneMenu>
+			<p:panelGrid id="pan-dados-abertura" columns="4"
+				style="width: 100%; margin-top: 20px"
+				columnClasses="rotulo, campo, rotulo, campo">
 
-			<p:outputLabel value="Cliente" for="cliente" />
-			<h:outputText id="cliente" value="Cliente" />
+				<p:outputLabel value="Código" for="codigo" />
+				<h:outputText value="1234" id="codigo" />
 
-			<p:outputLabel value="Data e Hora da Abertura" for="dtHrAbertura" />
-			<h:outputText value="01/01/2020 08:47" id="dtHrAbertura" />
-
-			<p:outputLabel value="Item de Configuração" for="itemConfiguracao" />
-			<h:outputText id="itemConfiguracao" value="o que está com problema" />
-
-			<p:outputLabel value="Usuário" for="usuario" />
-			<h:outputText id="usuario" value="o usuário que abriu o atendimento" />
-
-			<p:outputLabel value="Solicitante" for="solicitante" />
-			<h:outputText id="solicitante" value="quem solicitou o atendimento" />
-
-			<p:outputLabel value="Solicitação" for="solicitacao" />
-			<h:outputText id="solicitacao" value="qual é o problema reclamado"
-				size="80" />
-
-			<p:outputLabel value="Anexar PrintScreen do Erro" />
-			<h:panelGroup>
-				<p:fileUpload
-					fileUploadListener="#{atendimentoBean.handleFileUpload}"
-					mode="advanced" dragDropSupport="false" update="messages-file"
-					sizeLimit="100000" fileLimit="1"
-					allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-
-				<p:growl id="messages-file" showDetail="true" />
-			</h:panelGroup>
-
-			<h:outputLabel />
-			<h:outputLabel />
-
-			<p:outputLabel value="Observações" for="observacoes-abertura" />
-			<h:outputText id="observacoes-abertura"
-				value="observações feitas pelo solicitante..." />
-
-			<h:outputLabel />
-			<h:outputLabel />
-
-		</p:panelGrid>
-
-		<p:dataTable style="margin-top: 20px" id="tabelaTarefas"
-			value="#{atendimentoBean.tarefas}" var="tarefa"
-			emptyMessage="Nenhum Atendimento Encontrado" rows="20"
-			rowsPerPageTemplate="10, 20, 30" paginator="true"
-			paginatorAlwaysVisible="false" paginatorPosition="bottom">
-
-			<f:facet name="header">
-				<h:outputLabel value="Serviços Realizados" />
-			</f:facet>
-
-			<p:column headerText="Data e hora do início"
-				style="text-align: center" width="80">
-				<p:calendar value="#{atendimentoBean.dtHrInicio}"
-					pattern="dd/MM/yyyy HH:mm" />
-			</p:column>
-
-			<p:column headerText="Descrição do serviço realizado" width="80">
-				<p:inputText size="80" />
-			</p:column>
-
-			<p:column headerText="Data e hora do término"
-				style="text-align: center" width="80">
-				<p:calendar value="#{atendimentoBean.dtHrFim}"
-					pattern="dd/MM/yyyy HH:mm" />
-			</p:column>
-
-			<p:column headerText="Atendente">
-				<p:selectOneMenu>
-					<f:selectItem itemLabel="Selecione" />
-					<f:selectItem itemLabel="Doido" />
+				<p:outputLabel value="Status" for="status" />
+				<p:selectOneMenu id="status">
+					<f:selectItem itemLabel="Em Atendimento" />
+					<f:selectItem itemLabel="Pendência" />
 				</p:selectOneMenu>
-			</p:column>
 
-		</p:dataTable>
+				<p:outputLabel value="Cliente" for="cliente" />
+				<h:outputText id="cliente" value="Cliente" />
 
-		<p:panelGrid id="pan-dados-fechamento" columns="2"
-			style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+				<p:outputLabel value="Data e Hora da Abertura" for="dtHrAbertura" />
+				<h:outputText value="01/01/2020 08:47" id="dtHrAbertura" />
 
-			<p:outputLabel value="Observações" for="observacoes-encerramento" />
-			<p:inputTextarea id="observacoes-encerramento" />
+				<p:outputLabel value="Item de Configuração" for="itemConfiguracao" />
+				<h:outputText id="itemConfiguracao" value="o que está com problema" />
 
-		</p:panelGrid>
-	</h:form>
+				<p:outputLabel value="Usuário" for="usuario" />
+				<h:outputText id="usuario" value="o usuário que abriu o atendimento" />
 
-</h:body>
+				<p:outputLabel value="Solicitante" for="solicitante" />
+				<h:outputText id="solicitante" value="quem solicitou o atendimento" />
 
-</html>
+				<p:outputLabel value="Solicitação" for="solicitacao" />
+				<h:outputText id="solicitacao" value="qual é o problema reclamado"
+					size="80" />
+
+				<p:outputLabel value="Anexar PrintScreen do Erro" />
+				<h:panelGroup>
+					<p:fileUpload
+						fileUploadListener="#{atendimentoBean.handleFileUpload}"
+						mode="advanced" dragDropSupport="false" update="messages-file"
+						sizeLimit="100000" fileLimit="1"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+					<p:growl id="messages-file" showDetail="true" />
+				</h:panelGroup>
+
+				<h:outputLabel />
+				<h:outputLabel />
+
+				<p:outputLabel value="Observações" for="observacoes-abertura" />
+				<h:outputText id="observacoes-abertura"
+					value="observações feitas pelo solicitante..." />
+
+				<h:outputLabel />
+				<h:outputLabel />
+
+			</p:panelGrid>
+
+			<p:dataTable style="margin-top: 20px" id="tabelaTarefas"
+				value="#{atendimentoBean.tarefas}" var="tarefa"
+				emptyMessage="Nenhum Atendimento Encontrado" rows="20"
+				rowsPerPageTemplate="10, 20, 30" paginator="true"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+				<f:facet name="header">
+					<h:outputLabel value="Serviços Realizados" />
+				</f:facet>
+
+				<p:column headerText="Data e hora do início"
+					style="text-align: center" width="80">
+					<p:calendar value="#{atendimentoBean.dtHrInicio}"
+						pattern="dd/MM/yyyy HH:mm" />
+				</p:column>
+
+				<p:column headerText="Descrição do serviço realizado" width="80">
+					<p:inputText size="80" />
+				</p:column>
+
+				<p:column headerText="Data e hora do término"
+					style="text-align: center" width="80">
+					<p:calendar value="#{atendimentoBean.dtHrFim}"
+						pattern="dd/MM/yyyy HH:mm" />
+				</p:column>
+
+				<p:column headerText="Atendente">
+					<p:selectOneMenu>
+						<f:selectItem itemLabel="Selecione" />
+						<f:selectItem itemLabel="Doido" />
+					</p:selectOneMenu>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:panelGrid id="pan-dados-fechamento" columns="2"
+				style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Observações" for="observacoes-encerramento" />
+				<p:inputTextarea id="observacoes-encerramento" />
+
+			</p:panelGrid>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

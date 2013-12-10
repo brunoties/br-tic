@@ -1,60 +1,56 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/layout-padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="css" name="software.css"  />
-	<title>Pesquisar Papel</title>
-</h:head>
-<h:body>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
-	<h:form id="form-principal">
-		<h1>Pesquisar Papel</h1>
-		
-		<p:toolbar style="margin-top: 20px">
-			<p:toolbarGroup>
-				<p:commandButton value="Pesquisar" id="btnPesquisar" />
-			</p:toolbarGroup>
-			
-			<p:toolbarGroup align="right">
-				<p:button value="Novo" outcome="/Papel/cadastro-papel" />
-			</p:toolbarGroup>
-		</p:toolbar>
+	<ui:define name="titulo">Pesquisar Papel</ui:define>
 
-		<p:panelGrid columns="2" style="margin-top: 20px" columnClasses="rotulo, campo">
-			<p:outputLabel value="Nome" for="nome" />
-			<p:inputText id="nome" />
-		</p:panelGrid>
-		
-		<p:dataTable value="#{pesquisaPapelBean.papeisFiltrados}" var="papel"
-			style="margin-top:20px"
-			emptyMessage="Nenhum Papel Encontrado"
-			rows="20"
-			rowsPerPageTemplate="10, 20, 30"
-			paginator="true"
-			paginatorAlwaysVisible="false"
-			paginatorPosition="bottom">
-			
-			<p:column headerText="Nome">
-				<h:outputText value="Atendente" />
-			</p:column>
-			
-			<p:column headerText="Descrição">
-				<h:outputText value="Técnico responsável pelo atendimento ao cliente" />
-			</p:column>
-			
-			<p:column headerText="Ações" style="text-align: center" width="80">
-				<p:button icon="ui-icon-pencil" title="Editar" />
-				<p:button icon="ui-icon-trash" title="Excluir" />
-			</p:column>
-		
-		</p:dataTable>
-		
-	</h:form>
+	<ui:define name="corpo">
 
-</h:body>
-</html>
+		<h:form id="form-principal">
+			<h1>Pesquisar Papel</h1>
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" id="btnPesquisar" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" outcome="/Papel/cadastro-papel" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" style="margin-top: 20px"
+				columnClasses="rotulo, campo">
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" />
+			</p:panelGrid>
+
+			<p:dataTable value="#{pesquisaPapelBean.papeisFiltrados}" var="papel"
+				style="margin-top:20px" emptyMessage="Nenhum Papel Encontrado"
+				rows="20" rowsPerPageTemplate="10, 20, 30" paginator="true"
+				paginatorAlwaysVisible="false" paginatorPosition="bottom">
+
+				<p:column headerText="Nome">
+					<h:outputText value="Atendente" />
+				</p:column>
+
+				<p:column headerText="Descrição">
+					<h:outputText
+						value="Técnico responsável pelo atendimento ao cliente" />
+				</p:column>
+
+				<p:column headerText="Ações" style="text-align: center" width="80">
+					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:button icon="ui-icon-trash" title="Excluir" />
+				</p:column>
+
+			</p:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
