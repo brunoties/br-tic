@@ -15,11 +15,38 @@
 	
 	<h:body>
 		<header>
-			<div>
-				<h:link>	
+			<div style="float: left">
+				<h:link outcome="/Home">	
 					<h:graphicImage library="imgs" name="logo-br.jpg"  />	
 				</h:link>	
-			</div>		
+			</div>	
+			
+			<div style="float: right; margin-right: 110px">
+				<span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
+					Olá Fulano
+				</span>
+				<h:form id="form-menu" style="display: inline-block">
+					<p:menubar styleClass="menu-software">
+						<p:submenu label="Cadastros">
+							<p:menuitem value="Papéis" 
+								outcome="/Papel/pesquisar-papel" 
+								icon="ui-icon-search"/>
+							<p:menuitem value="Usuários" 
+								outcome="/Usuario/pesquisar-usuario"
+								icon="ui-icon-search" />
+						</p:submenu>
+						<p:submenu label="Atendimentos">
+							<p:menuitem value="Novo" 
+								outcome="/Atendimento/novo-atendimento"/>
+							<p:menuitem value="Atendimentos"
+								outcome="/Atendimento/pesquisar-atendimento" 
+								icon="ui-icon-search" />
+						</p:submenu>
+						<p:menuitem value="Sair" />
+					</p:menubar>
+				</h:form>
+			</div>
+			<div style="clear: both"></div>
 		</header>
 		
 		<div id="conteudo">

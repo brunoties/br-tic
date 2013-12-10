@@ -11,29 +11,28 @@
 
 		<h1>Pesquisar Usuário</h1>
 
-		<h:form id="form-principal">
+		<h:form id="frm-pesquisarUsuario">
 
 			<p:messages />
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:button value="Novo" outcome="/Usuario/cadastro-usuario" />
-					<p:commandButton update="@form" value="Salvar" id="btnSalvar" />
+					<p:commandButton value="Pesquisar" id="btnPesquisar" />
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisar" outcome="/Usuario/pesquisar-usuario" />
+					<p:commandButton value="Novo" oncomplete="inclusaoUsuario.show()" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
 			<p:panelGrid columns="2" style="margin-top:20px"
 				columnClasses="rotulo, campo">
 
-				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" />
+				<p:outputLabel value="Nome" for="pesquisarNome" />
+				<p:inputText id="pesquisarNome" />
 
-				<p:outputLabel value="E-mail" for="email" />
-				<p:inputText id="email" />
+				<p:outputLabel value="E-mail" for="pesquisarEmail" />
+				<p:inputText id="pesquisarEmail" />
 
 			</p:panelGrid>
 
@@ -57,10 +56,60 @@
 
 				<p:column headerText="Ações" style="text-align: center" width="80">
 					<p:button icon="ui-icon-pencil" title="Editar" />
-					<p:button icon="ui-icon-trash" title="Excluir" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="confirmacaoExclusao.show()" />
 				</p:column>
 
 			</p:dataTable>
+
+			<p:confirmDialog header="Novo Usuário"
+				message="Tem certeza que deseja Incluir o Novo Usuário?"
+				widgetVar="inclusaoUsuario">
+
+				<h:panelGroup>
+
+					<p:messages />
+
+					<p:panelGrid id="pan-novoUsuario" columns="2" style="margin-top: 20px"
+						columnClasses="rotulo, campo">
+
+						<p:outputLabel value="Nome" for="nome" />
+						<p:inputText id="nome" required="true" />
+
+						<p:outputLabel value="E-mail" for="email" />
+						<p:inputText id="email" required="true" />
+
+						<p:outputLabel value="Senha" for="senha" />
+						<p:password id="senha" required="true" />
+
+						<p:outputLabel value="Papel" for="papel" />
+						<p:selectOneMenu value="#{cadastroUsuarioBean.papel}" id="papel"
+							required="true">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+
+					<p:button value="Não" onclick="inclusaoUsuario.hide(); return false;" />
+					<p:commandButton value="Sim" 
+						oncomplete="inclusaoUsuario.hide(); return false;">
+					
+					</p:commandButton>
+
+				</h:panelGroup>
+
+			</p:confirmDialog>
+			
+			<p:confirmDialog header="Exclusão do Usuário"
+				message="Tem certeza que deseja Excluir o Usuário?"
+				widgetVar="confirmacaoExclusao">
+				<p:button value="Não"
+					onclick="confirmacaoExclusao.hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="confirmacaoExclusao.hide(); return false;">
+
+				</p:commandButton>
+			</p:confirmDialog>
 
 		</h:form>
 

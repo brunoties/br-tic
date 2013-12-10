@@ -77,7 +77,7 @@ h1 {
 	width: 98%;
 }
 
-/* Customiza TabView - inÃ­cio */
+/* Customiza TabView - inicio */
 .ui-tabs .ui-tabs-panel {
     padding: 0.5em 0.2em !important;
 }
@@ -94,3 +94,19 @@ h1 {
     padding: 0px !important;
 }
 /* Customiza TabView - fim */
+
+/* Menu software inicio */
+.menu-software {
+    border: 0px !important;
+    padding: 0px !important;
+    background: none !important;
+}
+
+.menu-software .ui-menu-parent > a .ui-menuitem-text, .menu-software > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text {
+    color: #ffffff !important;
+}
+
+.menu-software .ui-icon-triangle-1-s {
+    background: url(#{resource['imgs:seta-para-baixo.png']}) no-repeat;
+}
+/* Menu software fim */

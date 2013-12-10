@@ -9,7 +9,7 @@
 
 	<ui:define name="corpo">
 
-		<h:form id="form-principal">
+		<h:form id="frm-pesquisarPapel">
 			<h1>Pesquisar Papel</h1>
 
 			<p:toolbar style="margin-top: 20px">
@@ -18,14 +18,14 @@
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" outcome="/Papel/cadastro-papel" />
+					<p:commandButton value="Novo" oncomplete="inclusaoPapel.show()" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
 			<p:panelGrid columns="2" style="margin-top: 20px"
 				columnClasses="rotulo, campo">
-				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" />
+				<p:outputLabel value="Nome" for="pesquisarNome" />
+				<p:inputText id="pesquisarNome" />
 			</p:panelGrid>
 
 			<p:dataTable value="#{pesquisaPapelBean.papeisFiltrados}" var="papel"
@@ -44,10 +44,53 @@
 
 				<p:column headerText="Ações" style="text-align: center" width="80">
 					<p:button icon="ui-icon-pencil" title="Editar" />
-					<p:button icon="ui-icon-trash" title="Excluir" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="confirmacaoExclusao.show()" />
 				</p:column>
 
 			</p:dataTable>
+
+			<p:confirmDialog header="Novo Papel"
+				message="Tem certeza que deseja Incluir o Novo Papel?"
+				widgetVar="inclusaoPapel">
+
+				<h:panelGroup>
+
+					<p:messages />
+
+					<p:panelGrid id="pan-novoPapel" columns="2"
+						style="margin-top: 20px" columnClasses="rotulo, campo">
+
+						<p:outputLabel value="Nome" for="nome" />
+						<p:inputText id="nome" required="true" />
+
+						<p:outputLabel value="Descrição" for="descricao" />
+						<p:inputText id="descricao" required="true" />
+
+					</p:panelGrid>
+
+					<p:button value="Não" onclick="inclusaoPapel.hide(); return false;" />
+
+					<p:commandButton value="Sim" oncomplete="inclusaoPapel.hide();">
+
+					</p:commandButton>
+
+
+				</h:panelGroup>
+
+
+			</p:confirmDialog>
+
+			<p:confirmDialog header="Exclusão do Papel"
+				message="Tem certeza que deseja Excluir o Papel?"
+				widgetVar="confirmacaoExclusao">
+				<p:button value="Não"
+					onclick="confirmacaoExclusao.hide(); return false;" />
+				<p:commandButton value="Sim"
+					oncomplete="confirmacaoExclusao.hide(); return false;">
+
+				</p:commandButton>
+			</p:confirmDialog>
 
 		</h:form>
 
