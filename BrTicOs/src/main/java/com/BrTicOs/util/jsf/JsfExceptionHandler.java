@@ -14,9 +14,9 @@ import javax.faces.event.ExceptionQueuedEventContext;
 
 public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 
-	private ExceptionHandlerWrapper wrapped;
+	private ExceptionHandler wrapped;
 
-	public JsfExceptionHandler(ExceptionHandlerWrapper wrapped) {
+	public JsfExceptionHandler(ExceptionHandler wrapped) {
 		this.wrapped = wrapped;
 	}
 
@@ -25,20 +25,18 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 		return wrapped;
 	}
 
+	@Override
 	public void handle() throws FacesException {
 		Iterator<ExceptionQueuedEvent> events = getUnhandledExceptionQueuedEvents()
 				.iterator();
 
 		while (events.hasNext()) {
-
 			ExceptionQueuedEvent event = events.next();
-			// a origem da excecao
 			ExceptionQueuedEventContext context = (ExceptionQueuedEventContext) event
 					.getSource();
 
 			Throwable exception = context.getException();
 
-			
 			try {
 				if (exception instanceof ViewExpiredException) {
 					redirect("/");
@@ -47,23 +45,21 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 				events.remove();
 			}
 		}
+
 		getWrapped().handle();
 	}
 
 	private void redirect(String page) {
-		
 		try {
-			FacesContext fc = FacesContext.getCurrentInstance();
-			// contexto da aplicacao, url padrao
-			ExternalContext ec = fc.getExternalContext();
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+			ExternalContext externalContext = facesContext.getExternalContext();
+			String contextPath = externalContext.getRequestContextPath();
 
-			String cp = ec.getRequestContextPath();
-			ec.redirect(cp + page);
-			fc.responseComplete();
+			externalContext.redirect(contextPath + page);
+			facesContext.responseComplete();
 		} catch (IOException e) {
 			throw new FacesException(e);
 		}
-
 	}
 
 }

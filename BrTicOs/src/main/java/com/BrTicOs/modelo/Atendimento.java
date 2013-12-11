@@ -1,50 +1,66 @@
 package com.BrTicOs.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class Atendimento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer codigo;
-	private String status;
+	private Long codigo;
+	private Usuario usuarioAbertura;
+	private StatusAtendimento status;
+
 	private String itemConfiguracao;
 	private String solicitacao;
 	private Calendar dtHrAbertura;
 	private Calendar dtHrFechamento;
 	// tela de erro
 	private String observacao;
+	private List<Tarefa> tarefas = new ArrayList<Tarefa>();
 	
 	public Atendimento() {
 	}
-	public Atendimento(String status, String itemConfiguracao,
+	
+	public Atendimento(Long codigo, Usuario usuarioAbertura,
+			StatusAtendimento status, String itemConfiguracao,
 			String solicitacao, Calendar dtHrAbertura, Calendar dtHrFechamento,
-			String observacao) {
-		this.status = status;
-		this.itemConfiguracao = itemConfiguracao;
-		this.solicitacao = solicitacao;
-		this.dtHrAbertura = dtHrAbertura;
-		this.dtHrFechamento = dtHrFechamento;
-		this.observacao = observacao;
-	}
-	public Atendimento(Integer codigo, String status, String itemConfiguracao,
-			String solicitacao, Calendar dtHrAbertura, Calendar dtHrFechamento,
-			String observacao) {
+			String observacao, List<Tarefa> tarefas) {
 		this.codigo = codigo;
+		this.usuarioAbertura = usuarioAbertura;
 		this.status = status;
 		this.itemConfiguracao = itemConfiguracao;
 		this.solicitacao = solicitacao;
 		this.dtHrAbertura = dtHrAbertura;
 		this.dtHrFechamento = dtHrFechamento;
 		this.observacao = observacao;
+		this.tarefas = tarefas;
 	}
-	public String getStatus() {
+	public Atendimento(Usuario usuarioAbertura, StatusAtendimento status,
+			String itemConfiguracao, String solicitacao, Calendar dtHrAbertura,
+			Calendar dtHrFechamento, String observacao, List<Tarefa> tarefas) {
+		this.usuarioAbertura = usuarioAbertura;
+		this.status = status;
+		this.itemConfiguracao = itemConfiguracao;
+		this.solicitacao = solicitacao;
+		this.dtHrAbertura = dtHrAbertura;
+		this.dtHrFechamento = dtHrFechamento;
+		this.observacao = observacao;
+		this.tarefas = tarefas;
+	}
+	
+	public List<Tarefa> getTarefas() {
+		return tarefas;
+	}
+	public StatusAtendimento getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(StatusAtendimento status) {
 		this.status = status;
 	}
+	
 	public String getItemConfiguracao() {
 		return itemConfiguracao;
 	}
@@ -75,9 +91,16 @@ public class Atendimento implements Serializable {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
+	public Usuario getUsuarioAbertura() {
+		return usuarioAbertura;
+	}
+	public void setUsuarioAbertura(Usuario usuarioAbertura) {
+		this.usuarioAbertura = usuarioAbertura;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

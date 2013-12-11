@@ -1,31 +1,46 @@
 package com.BrTicOs.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TB_PAP_PAPEL")
 public class Papel implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer codigo;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "PAP_CODIGO")
+	private Long codigo;
+	
+	@Column(name = "PAP_NOME")
 	private String nome;
+	
+	@Column(name = "PAP_DESCRICAO")
 	private String descricao;
+	
+	@OneToMany(mappedBy = "papel" , cascade = CascadeType.ALL)
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	
 	public Papel() {
 		
 	}
 	
-	public Papel(Integer codigo, String nome, String descricao) {
-		this.codigo = codigo;
-		this.nome = nome;
-		this.descricao = descricao;
-	}
-
 	public Papel(String nome, String descricao) {
 		this.nome = nome;
 		this.descricao = descricao;
 	}
-
-
 
 	public String getNome() {
 		return nome;
@@ -39,9 +54,14 @@ public class Papel implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
+	
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -66,7 +86,7 @@ public class Papel implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Papel [codigo=" + codigo + ", nome=" + nome + ", descricao="

@@ -2,14 +2,37 @@ package com.BrTicOs.modelo;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TB_USU_USUARIO")
 public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Integer codigo;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "USU_CODIGO")
+	private Long codigo;
+	
+	@Column(name = "USU_NOME")
 	private String nome;
+	
+	@Column(name = "USU_EMAIL")
 	private String email;
+	
+	@Column(name = "USU_SENHA")
 	private String senha;
+	
+	@ManyToOne
+	@JoinColumn(name = "PAP_CODIGO", referencedColumnName = "PAP_CODIGO")
 	private Papel papel;
 	
 	public Usuario() {
@@ -20,13 +43,19 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 		this.papel = papel;
 	}
-	public Usuario(Integer codigo, String nome, String email, String senha,
+	public Usuario(Long codigo, String nome, String email, String senha,
 			Papel papel) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.papel = papel;
+	}
+	
+	public Usuario(String nome, String email, String senha) {
+		this.nome = nome;
+		this.email = email;
+		this.senha = senha;
 	}
 	public String getNome() {
 		return nome;
@@ -52,7 +81,7 @@ public class Usuario implements Serializable {
 	public void setPapel(Papel papel) {
 		this.papel = papel;
 	}
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 	@Override
