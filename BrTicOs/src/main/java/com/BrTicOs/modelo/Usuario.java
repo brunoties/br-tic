@@ -1,7 +1,10 @@
 package com.BrTicOs.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +39,12 @@ public class Usuario implements Serializable {
 	@JoinColumn(name = "PAP_CODIGO", referencedColumnName = "PAP_CODIGO")
 	private Papel papel;
 	
+	@OneToMany(mappedBy = "usuarioAbertura", cascade = CascadeType.ALL)
+	private List<Atendimento> atendimentos = new ArrayList<Atendimento>();
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private List<Tarefa> tarefas = new ArrayList<Tarefa>();
+	
 	public Usuario() {
 	}
 	public Usuario(String nome, String email, String senha, Papel papel) {
@@ -56,6 +66,11 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
+	}
+	
+	
+	public List<Atendimento> getAtendimentos() {
+		return atendimentos;
 	}
 	public String getNome() {
 		return nome;
@@ -80,6 +95,9 @@ public class Usuario implements Serializable {
 	}
 	public void setPapel(Papel papel) {
 		this.papel = papel;
+	}
+	public List<Tarefa> getTarefas() {
+		return tarefas;
 	}
 	public Long getCodigo() {
 		return codigo;

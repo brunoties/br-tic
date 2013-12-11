@@ -33,6 +33,8 @@ public class TesteUsuarioJPA {
 
 		trx.commit();
 		
+		em.close();
+		
 	}
 
 }

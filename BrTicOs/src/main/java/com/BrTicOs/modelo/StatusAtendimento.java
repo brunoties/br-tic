@@ -13,4 +13,8 @@ public enum StatusAtendimento {
 		this.descricao = descricao;
 	}
 	
+	public String toString() {
+		return descricao;
+	}
+	
 }

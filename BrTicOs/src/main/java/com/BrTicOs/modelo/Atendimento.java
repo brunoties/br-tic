@@ -5,20 +5,59 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table(name = "TB_ATE_ATENDIMENTO")
 public class Atendimento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ATE_CODIGO")
 	private Long codigo;
+	
+	@ManyToOne
+	@JoinColumn(name = "USU_CODIGO", referencedColumnName = "USU_CODIGO")
 	private Usuario usuarioAbertura;
+	
+	@Enumerated(EnumType.STRING)
 	private StatusAtendimento status;
 
+	@Column(name = "ATE_ITEM_CONFIGURACAO")
 	private String itemConfiguracao;
+	
+	@Column(name = "ATE_SOLICITACAO")
 	private String solicitacao;
+	
+	@Column(name = "ATE_DT_HR_ABERTURA")
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar dtHrAbertura;
+	
+	@Column(name = "ATE_DT_HR_FECHAMENTO")
+	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar dtHrFechamento;
+	
 	// tela de erro
+	
+	@Column(name = "ATE_OBSERVACAO")
 	private String observacao;
+	
+	@OneToMany(mappedBy = "atendimento", cascade = CascadeType.ALL)
 	private List<Tarefa> tarefas = new ArrayList<Tarefa>();
 	
 	public Atendimento() {
