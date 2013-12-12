@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TB_USU_USUARIO")
@@ -26,12 +27,15 @@ public class Usuario implements Serializable {
 	@Column(name = "USU_CODIGO")
 	private Long codigo;
 	
+	@NotNull
 	@Column(name = "USU_NOME")
 	private String nome;
 	
+	@NotNull
 	@Column(name = "USU_EMAIL")
 	private String email;
 	
+	@NotNull
 	@Column(name = "USU_SENHA")
 	private String senha;
 	

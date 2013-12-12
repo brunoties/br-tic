@@ -8,9 +8,10 @@
 
 	<factory>
 		<exception-handler-factory>
-			com.BrTicOs.util.jsf.JsfExceptionHandleFactory
+			com.BrTicOs.util.jsf.JsfExceptionHandlerFactory
 		</exception-handler-factory>
 	</factory>
+
 	
 
 </faces-config>

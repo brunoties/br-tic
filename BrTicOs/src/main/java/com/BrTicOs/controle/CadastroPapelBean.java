@@ -1,4 +1,4 @@
-package com.BrTicOs.visao;
+package com.BrTicOs.controle;
 
 import java.io.Serializable;
 
@@ -9,13 +9,13 @@ import com.BrTicOs.modelo.Papel;
 
 @Named
 @ViewScoped
-public class NovoPapelBean implements Serializable {
+public class CadastroPapelBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Papel papel;
 	
-	public NovoPapelBean() {
+	public CadastroPapelBean() {
 		papel = new Papel();
 	}
 

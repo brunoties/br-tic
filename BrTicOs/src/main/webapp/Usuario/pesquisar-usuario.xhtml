@@ -21,7 +21,8 @@
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:commandButton value="Novo" oncomplete="inclusaoUsuario.show()" />
+					<p:button value="Novo" outcome="/Usuario/cadastro-usuario" />
+					<!-- <p:commandButton value="Novo" oncomplete="inclusaoUsuario.show()" /> -->
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -61,7 +62,9 @@
 				</p:column>
 
 			</p:dataTable>
-
+			
+			
+			<!--  
 			<p:confirmDialog header="Novo Usuário"
 				message="Tem certeza que deseja Incluir o Novo Usuário?"
 				widgetVar="inclusaoUsuario">
@@ -82,7 +85,8 @@
 
 				</p:commandButton>
 			</p:confirmDialog>
-
+			-->
+			
 		</h:form>
 
 	</ui:define>

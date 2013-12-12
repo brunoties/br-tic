@@ -9,16 +9,23 @@
 
 	<ui:define name="corpo">
 
-		<h1>Novo Usuário</h1>
+		<f:metadata>
+			<f:viewParam name="fixBugRenderViewInJSF2-1-21" />
+			<f:event listener="#{cadastroUsuarioBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
 
 		<h:form id="form-principal">
+
+			<h1>Novo Usuário</h1>
 
 			<p:messages />
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/Usuario/cadastro-usuario" />
-					<p:commandButton update="@form" value="Salvar" id="btnSalvar" />
+					<p:commandButton update="@form" value="Salvar" id="btnSalvar"
+						action="#{cadastroUsuarioBean.salvar}" />
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -26,22 +33,24 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<p:panelGrid id="painel" columns="2" style="margin-top: 20px"
-				columnClasses="rotulo, campo">
+			<p:panelGrid id="pan-novoUsuario" columns="2"
+				style="margin-top: 20px" columnClasses="rotulo, campo">
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" required="true" />
+				<p:inputText id="nome" required="true"/>
 
 				<p:outputLabel value="E-mail" for="email" />
-				<p:inputText id="email" required="true" />
+				<p:inputText id="email" required="true"/>
 
 				<p:outputLabel value="Senha" for="senha" />
-				<p:password id="senha" required="true" />
+				<p:password id="senha" required="true"/>
 
 				<p:outputLabel value="Papel" for="papel" />
-				<p:selectOneMenu value="#{cadastroUsuarioBean.papel}" id="papel"
-					required="true">
-					<f:selectItem itemLabel="Selecione" itemValue="" />
+
+				<p:selectOneMenu id="papel" >
+					<f:selectItem itemLabel="Selecione" itemValue="" required="true" />
+					<f:selectItems value="#{cadastroUsuarioBean.papeis}" var="papel"
+						itemValue="#{papel}" itemLabel="#{papel.nome}" />
 				</p:selectOneMenu>
 
 			</p:panelGrid>

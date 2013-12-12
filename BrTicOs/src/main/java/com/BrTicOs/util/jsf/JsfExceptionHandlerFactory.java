@@ -3,11 +3,11 @@ package com.BrTicOs.util.jsf;
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerFactory;
 
-public class JsfExceptionHandleFactory extends ExceptionHandlerFactory {
+public class JsfExceptionHandlerFactory extends ExceptionHandlerFactory {
 	
 	private ExceptionHandlerFactory ehf;
 	
-	public JsfExceptionHandleFactory(ExceptionHandlerFactory ehf) {
+	public JsfExceptionHandlerFactory(ExceptionHandlerFactory ehf) {
 		this.ehf = ehf;
 	}
 	

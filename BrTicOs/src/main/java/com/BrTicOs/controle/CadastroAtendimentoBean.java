@@ -1,4 +1,4 @@
-package com.BrTicOs.visao;
+package com.BrTicOs.controle;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ import com.BrTicOs.modelo.Atendimento;
 
 @Named
 @ViewScoped
-public class NovoAtendimentoBean implements Serializable {
+public class CadastroAtendimentoBean implements Serializable {
 
 	private static final long serialVersionUID = 1207624101893394523L;
 	
@@ -17,7 +17,7 @@ public class NovoAtendimentoBean implements Serializable {
 	
 	private String cliente;
 	
-	public NovoAtendimentoBean() {
+	public CadastroAtendimentoBean() {
 		atendimento = new Atendimento();
 		cliente = new String();
 	}

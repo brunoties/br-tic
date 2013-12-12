@@ -1,25 +1,34 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="/WEB-INF/template/layout-padrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
+		
+	<f:metadata>
+		<f:event listener="#{cadastroUsuarioBean.inicializar}" type="preRenderView" />
+	</f:metadata>
+	
 	<p:panelGrid id="pan-novoUsuario" columns="2" style="margin-top: 20px"
 		columnClasses="rotulo, campo">
 
 		<p:outputLabel value="Nome" for="nome" />
-		<p:inputText id="nome" required="true" />
+		<p:inputText id="nome" />
 
 		<p:outputLabel value="E-mail" for="email" />
-		<p:inputText id="email" required="true" />
+		<p:inputText id="email" />
 
 		<p:outputLabel value="Senha" for="senha" />
-		<p:password id="senha" required="true" />
+		<p:password id="senha" />
 
 		<p:outputLabel value="Papel" for="papel" />
-		<p:selectOneMenu value="#{cadastroUsuarioBean.papel}" id="papel"
-			required="true">
-			<f:selectItem itemLabel="Selecione" itemValue="" />
+		
+		<p:selectOneMenu id="papel">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroUsuarioBean.papeis}"
+				var="papel" 
+				itemValue="#{papel}" 
+				itemLabel="#{papel.descricao}"/>
 		</p:selectOneMenu>
 
 	</p:panelGrid>
