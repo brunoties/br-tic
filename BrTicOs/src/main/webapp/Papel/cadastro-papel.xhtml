@@ -30,10 +30,10 @@
 				columnClasses="rotulo, campo">
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" required="true" />
+				<p:inputText id="nome" value="#{novoPapelBean.papel.nome}" />
 
 				<p:outputLabel value="Descrição" for="descricao" />
-				<p:inputText id="descricao" required="true" />
+				<p:inputText id="descricao" value="#{novoPapelBean.papel.descricao}" />
 
 			</p:panelGrid>
 

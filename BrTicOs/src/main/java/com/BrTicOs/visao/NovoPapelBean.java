@@ -22,10 +22,6 @@ public class NovoPapelBean implements Serializable {
 	public Papel getPapel() {
 		return papel;
 	}
-
-	public void setPapel(Papel papel) {
-		this.papel = papel;
-	}
 	
 	public void salvar() {
 		

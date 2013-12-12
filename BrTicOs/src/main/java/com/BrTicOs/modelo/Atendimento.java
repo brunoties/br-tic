@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TB_ATE_ATENDIMENTO")
@@ -38,7 +39,8 @@ public class Atendimento implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "ATE_STATUS")
 	private StatusAtendimento status;
-
+	
+	@NotNull
 	@Column(name = "ATE_ITEM_CONFIGURACAO")
 	private String itemConfiguracao;
 	
