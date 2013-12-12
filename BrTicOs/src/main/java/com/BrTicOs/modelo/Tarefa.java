@@ -22,14 +22,14 @@ public class Tarefa implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "ATE_CODIGO")
+	@Column(name = "TAR_CODIGO")
 	private Long codigo;
 	
 	@Column(name = "TAR_DT_HR_ABERTURA")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar dtHrAbertura;
 	
-	@Column(name = "TAR_DT_HR_FECHAMENTO	")
+	@Column(name = "TAR_DT_HR_FECHAMENTO")
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Calendar dtHrFechamento;
 	

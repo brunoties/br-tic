@@ -36,6 +36,7 @@ public class Atendimento implements Serializable {
 	private Usuario usuarioAbertura;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(name = "ATE_STATUS")
 	private StatusAtendimento status;
 
 	@Column(name = "ATE_ITEM_CONFIGURACAO")
