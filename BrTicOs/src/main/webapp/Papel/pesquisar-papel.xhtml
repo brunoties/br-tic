@@ -54,31 +54,9 @@
 				message="Tem certeza que deseja Incluir o Novo Papel?"
 				widgetVar="inclusaoPapel">
 
-				<h:panelGroup>
+				<p:messages autoUpdate="true" />
 
-					<p:messages />
-
-					<p:panelGrid id="pan-novoPapel" columns="2"
-						style="margin-top: 20px" columnClasses="rotulo, campo">
-
-						<p:outputLabel value="Nome" for="nome" />
-						<p:inputText id="nome" required="true" />
-
-						<p:outputLabel value="Descrição" for="descricao" />
-						<p:inputText id="descricao" required="true" />
-
-					</p:panelGrid>
-
-					<p:button value="Não" onclick="inclusaoPapel.hide(); return false;" />
-
-					<p:commandButton value="Sim" oncomplete="inclusaoPapel.hide();" 
-						>
-
-					</p:commandButton>
-
-
-				</h:panelGroup>
-
+				<ui:include src="/WEB-INF/template/papel/novo-papel.xhtml" />
 
 			</p:confirmDialog>
 

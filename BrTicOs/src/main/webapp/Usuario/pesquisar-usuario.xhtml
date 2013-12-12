@@ -66,40 +66,12 @@
 				message="Tem certeza que deseja Incluir o Novo Usuário?"
 				widgetVar="inclusaoUsuario">
 
-				<h:panelGroup>
+				<p:messages autoUpdate="true" />
 
-					<p:messages />
-
-					<p:panelGrid id="pan-novoUsuario" columns="2" style="margin-top: 20px"
-						columnClasses="rotulo, campo">
-
-						<p:outputLabel value="Nome" for="nome" />
-						<p:inputText id="nome" required="true" />
-
-						<p:outputLabel value="E-mail" for="email" />
-						<p:inputText id="email" required="true" />
-
-						<p:outputLabel value="Senha" for="senha" />
-						<p:password id="senha" required="true" />
-
-						<p:outputLabel value="Papel" for="papel" />
-						<p:selectOneMenu value="#{cadastroUsuarioBean.papel}" id="papel"
-							required="true">
-							<f:selectItem itemLabel="Selecione" itemValue="" />
-						</p:selectOneMenu>
-
-					</p:panelGrid>
-
-					<p:button value="Não" onclick="inclusaoUsuario.hide(); return false;" />
-					<p:commandButton value="Sim" 
-						oncomplete="inclusaoUsuario.hide(); return false;">
-					
-					</p:commandButton>
-
-				</h:panelGroup>
+				<ui:include src="/WEB-INF/template/usuario/novo-usuario.xhtml" />
 
 			</p:confirmDialog>
-			
+
 			<p:confirmDialog header="Exclusão do Usuário"
 				message="Tem certeza que deseja Excluir o Usuário?"
 				widgetVar="confirmacaoExclusao">

@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "TB_PAP_PAPEL")
@@ -24,9 +25,11 @@ public class Papel implements Serializable{
 	@Column(name = "PAP_CODIGO")
 	private Long codigo;
 	
+	@NotNull 
 	@Column(name = "PAP_NOME")
 	private String nome;
 	
+	@NotNull
 	@Column(name = "PAP_DESCRICAO")
 	private String descricao;
 	

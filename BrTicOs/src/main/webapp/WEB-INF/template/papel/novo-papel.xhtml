@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panelGrid id="pan-novoPapel" columns="2" style="margin-top: 20px"
+		columnClasses="rotulo, campo">
+
+		<p:outputLabel value="Nome" for="nome" />
+		<p:inputText id="nome" value="#{novoPapelBean.papel.nome}" />
+
+		<p:outputLabel value="Descrição" for="descricao" />
+		<p:inputText id="descricao" value="#{novoPapelBean.papel.descricao}" />
+
+	</p:panelGrid>
+
+	<p:button value="Não" onclick="inclusaoPapel.hide(); return false;" />
+
+	<p:commandButton value="Sim" action="#{novoPapelBean.salvar}" />
+	
+</ui:composition>
