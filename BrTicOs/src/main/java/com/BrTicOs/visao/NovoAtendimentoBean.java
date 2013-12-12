@@ -2,10 +2,10 @@ package com.BrTicOs.visao;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
-@ManagedBean
+@Named
 @ViewScoped
 public class NovoAtendimentoBean implements Serializable {
 

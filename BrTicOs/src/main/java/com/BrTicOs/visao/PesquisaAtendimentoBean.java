@@ -1,15 +1,17 @@
 package com.BrTicOs.visao;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
-@ManagedBean
-@RequestScoped
-public class PesquisaAtendimentoBean {
+@Named
+@ViewScoped
+public class PesquisaAtendimentoBean implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private List<Integer> atendimentosFiltrados;
 	
 	public PesquisaAtendimentoBean() {
