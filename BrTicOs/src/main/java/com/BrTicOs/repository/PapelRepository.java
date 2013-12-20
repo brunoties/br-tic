@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 import com.BrTicOs.modelo.Papel;
 
@@ -21,5 +22,16 @@ public class PapelRepository implements Serializable {
 	
 	public Papel byCode(Long code) {
 		return manager.find(Papel.class, code);
+	}
+	
+	public Papel save(Papel papel) {
+		EntityTransaction trx = manager.getTransaction();
+		
+		trx.begin();
+		
+		papel = manager.merge(papel);
+		
+		trx.commit();
+		return papel;
 	}
 }

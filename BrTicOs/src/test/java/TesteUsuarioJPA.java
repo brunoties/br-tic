@@ -24,18 +24,18 @@ public class TesteUsuarioJPA {
 		
 		trx.begin();
 		
-		//Usuario usuario = new Usuario("Lulu", "anjo@lindo.com", "123mudar");
-		Usuario usuario = em.find(Usuario.class, 1L);
+		Usuario usuario = new Usuario("Lulu", "anjo@lindo.com", "123mudar");
+		//Usuario usuario = em.find(Usuario.class, 1L);
 		//System.out.println(usuario.getNome());
-		//Papel papel = new Papel("Filha", "Minha alegria");
+		Papel papel = new Papel("Filha", "Minha alegria");
 		
-		//usuario.setPapel(papel);
+		usuario.setPapel(papel);
 		
 		//papel.getUsuarios().add(usuario);
 		
 		//Atendimento atendimento = new Atendimento();
 		
-		Atendimento atendimento = em.find(Atendimento.class, 1L);
+//		Atendimento atendimento = em.find(Atendimento.class, 1L);
 		//System.out.println(atendimento.getSolicitacao());
 	/*	atendimento.setDtHrAbertura(Calendar.getInstance());
 		atendimento.setItemConfiguracao("computador");
@@ -45,13 +45,19 @@ public class TesteUsuarioJPA {
 		atendimento.setUsuarioAbertura(usuario);*/
 		
 		
-		//em.persist(papel);
+		em.persist(usuario);
 		
-		//em.persist(usuario);
+//		Usuario usuario = new Usuario("a", "a@b.com", "123");
+//		
+//		Papel papel = em.find(Papel.class, 1L);
+		
+//		usuario.setPapel(papel);
+		
+//		em.persist(usuario);
 		
 		//em.persist(atendimento);
 		
-		Tarefa tarefa = new Tarefa();
+		/*Tarefa tarefa = new Tarefa();
 		
 		tarefa.setAtendimento(atendimento);
 		
@@ -68,7 +74,7 @@ public class TesteUsuarioJPA {
 		atendimento.getTarefas().add(tarefa);
 		
 		em.persist(tarefa);
-
+*/
 		trx.commit();
 		
 		em.close();

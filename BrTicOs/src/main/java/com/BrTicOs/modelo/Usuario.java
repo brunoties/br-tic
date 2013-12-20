@@ -39,7 +39,7 @@ public class Usuario implements Serializable {
 	@Column(name = "USU_SENHA")
 	private String senha;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "PAP_CODIGO", referencedColumnName = "PAP_CODIGO")
 	private Papel papel;
 	

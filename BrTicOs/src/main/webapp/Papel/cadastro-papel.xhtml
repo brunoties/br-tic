@@ -13,12 +13,13 @@
 
 		<h:form id="form-principal">
 
-			<p:messages autoUpdate="true" id="msgs" />
+			<p:messages autoUpdate="true"/>
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/Papel/cadastro-papel" />
-					<p:commandButton value="Salvar" id="btnSalvar" update="msgs" />
+					<p:commandButton value="Salvar" id="btnSalvar" update="@form" 
+						action="#{cadastroPapelBean.salvar}"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -30,10 +31,12 @@
 				columnClasses="rotulo, campo">
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" value="#{novoPapelBean.papel.nome}" />
+				<p:inputText id="nome" value="#{cadastroPapelBean.papel.nome}" 
+					required="true"/>
 
 				<p:outputLabel value="Descrição" for="descricao" />
-				<p:inputText id="descricao" value="#{novoPapelBean.papel.descricao}" />
+				<p:inputText id="descricao" value="#{cadastroPapelBean.papel.descricao}" 
+					required="true" />
 
 			</p:panelGrid>
 

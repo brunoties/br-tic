@@ -13,18 +13,15 @@ public class FacesUtil {
 		return !isPostback();
 	}
 
-	public static void addErrorMessage() {
+	public static void addErrorMessage(String message) {
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage(FacesMessage.SEVERITY_ERROR, 
-						"Erro: Houve uma falha na operação, favor, contactar o administrador do software"
-							, ""));
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message));
 	}
 	
-	public static void addSuccessMessage() {
+	public static void addSuccessMessage(String message) {
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO, 
-						"Informação: A operação foi realizada com sucesso."
-						, ""));
+						message, message));
 	}
 
 }
