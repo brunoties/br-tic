@@ -14,6 +14,11 @@
 		</exception-handler-factory>
 	</factory>
 
-	
+	<!-- Definindo a localizacao padrao da aplicacao e seu idioma -->
+	<application>
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+		</locale-config>
+	</application>
 
 </faces-config>

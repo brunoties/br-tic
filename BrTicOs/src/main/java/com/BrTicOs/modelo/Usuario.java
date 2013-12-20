@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "TB_USU_USUARIO")
@@ -27,20 +30,23 @@ public class Usuario implements Serializable {
 	@Column(name = "USU_CODIGO")
 	private Long codigo;
 	
-	@NotNull
+	@NotBlank
+	@Size(min = 3, max = 50)
 	@Column(name = "USU_NOME")
 	private String nome;
 	
-	@NotNull
+	@NotBlank
 	@Column(name = "USU_EMAIL")
 	private String email;
 	
-	@NotNull
+	@NotBlank
+	@Size(min = 6, max = 20)
 	@Column(name = "USU_SENHA")
 	private String senha;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "PAP_CODIGO", referencedColumnName = "PAP_CODIGO")
+	@NotNull
 	private Papel papel;
 	
 	@OneToMany(mappedBy = "usuarioAbertura", cascade = CascadeType.ALL)

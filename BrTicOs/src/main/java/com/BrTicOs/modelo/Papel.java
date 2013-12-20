@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "TB_PAP_PAPEL")
@@ -25,11 +28,13 @@ public class Papel implements Serializable{
 	@Column(name = "PAP_CODIGO")
 	private Long codigo;
 	
-	@NotNull 
+	@NotBlank
+	@Size(min = 3, max = 50)
 	@Column(name = "PAP_NOME")
 	private String nome;
 	
-	@NotNull
+	@NotBlank
+	@Size(min = 5, max = 100)
 	@Column(name = "PAP_DESCRICAO")
 	private String descricao;
 	
@@ -45,6 +50,7 @@ public class Papel implements Serializable{
 		this.descricao = descricao;
 	}
 
+	
 	public String getNome() {
 		return nome;
 	}

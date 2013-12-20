@@ -35,7 +35,7 @@ public class CadastroUsuarioBean implements Serializable {
 
 	private Usuario usuario;
 	
-	private Papel papel = new Papel();
+	private Papel papel;
 
 	public CadastroUsuarioBean() {
 		limpar();
