@@ -14,11 +14,15 @@
 		</exception-handler-factory>
 	</factory>
 
-	<!-- Definindo a localizacao padrao da aplicacao e seu idioma -->
 	<application>
+		<!-- Definindo a localizacao padrao da aplicacao e seu idioma -->
 		<locale-config>
 			<default-locale>pt_BR</default-locale>
 		</locale-config>
+		
+		<!-- Arquivo de personalizacao das mensagens do Bean Validation -->
+		<message-bundle>com.brtic.Messages</message-bundle>
+		
 	</application>
 
 </faces-config>

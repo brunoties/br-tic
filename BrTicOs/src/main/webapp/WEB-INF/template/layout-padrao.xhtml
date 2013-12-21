@@ -11,9 +11,23 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title><ui:insert name="titulo">Software de Abertura de Atendimentos</ui:insert></title>
 		<h:outputStylesheet library="css" name="software.css"  />
+		<h:outputScript library="js" name="jquery.maskMoney.js"/>
 	</h:head>	
 	
 	<h:body>
+	
+		<!-- Configurando mascara para valores monetarios	 -->
+		<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()">
+	
+		<!-- Carregando imagem de processamento -->
+		<f:facet name="start">
+				<h:graphicImage library="imgs" name="loading.gif"/>
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value=""/>
+			</f:facet>
+		</p:ajaxStatus>
+	
 		<header>
 			<div style="float: left">
 				<h:link outcome="/Home">	
@@ -59,6 +73,16 @@
 			Soluções Integradas para Melhor Atender as Necessidades do seu Empreendimento -
 			<a href="http://www.brsolucoesemti.com.br" target="_blank">www.brsolucoesemti.com.br</a>
 		</footer>
+		
+		<script>
+			function configurarMoeda() {
+				$(".moeda").maskMoney({ decimal: ",", thousands: ".", allowZero: true });
+			}
+			
+			$(document).ready(function() {
+				configurarMoeda();
+			});
+		</script>
 		
 	</h:body>
 	

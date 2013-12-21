@@ -15,9 +15,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
+
+import com.BrTicOs.validation.Senha;
 
 @Entity
 @Table(name = "TB_USU_USUARIO")
@@ -39,8 +42,7 @@ public class Usuario implements Serializable {
 	@Column(name = "USU_EMAIL")
 	private String email;
 	
-	@NotBlank
-	@Size(min = 6, max = 20)
+	@NotBlank @Size(min = 7, max = 16) @Senha
 	@Column(name = "USU_SENHA")
 	private String senha;
 	
