@@ -93,7 +93,7 @@ public class Usuario implements Serializable {
 		return email;
 	}
 	public void setEmail(String email) {
-		this.email = email;
+		this.email = email == null ? null : email.toLowerCase();
 	}
 	public String getSenha() {
 		return senha;

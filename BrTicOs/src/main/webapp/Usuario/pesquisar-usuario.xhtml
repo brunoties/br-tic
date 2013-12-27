@@ -13,16 +13,17 @@
 
 		<h:form id="frm-pesquisarUsuario">
 
-			<p:messages />
+			<p:messages autoUpdate="true" closable="true"/>
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" id="btnPesquisar" />
+					<p:commandButton value="Pesquisar" id="btnPesquisar" 
+						action="#{pesquisaUsuarioBean.pesquisar}"
+						update="@form"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
 					<p:button value="Novo" outcome="/Usuario/cadastro-usuario" />
-					<!-- <p:commandButton value="Novo" oncomplete="inclusaoUsuario.show()" /> -->
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -30,10 +31,12 @@
 				columnClasses="rotulo, campo">
 
 				<p:outputLabel value="Nome" for="pesquisarNome" />
-				<p:inputText id="pesquisarNome" />
+				<p:inputText id="pesquisarNome" 
+					value="#{pesquisaUsuarioBean.filtro.nome}"/>
 
 				<p:outputLabel value="E-mail" for="pesquisarEmail" />
-				<p:inputText id="pesquisarEmail" />
+				<p:inputText id="pesquisarEmail" 
+					value="#{pesquisaUsuarioBean.filtro.email}"/>
 
 			</p:panelGrid>
 
@@ -44,15 +47,15 @@
 				paginatorAlwaysVisible="false" paginatorPosition="bottom">
 
 				<p:column headerText="Nome">
-					<h:outputLabel value="Zé ruela" />
+					<h:outputLabel value="#{usuario.nome}" />
 				</p:column>
 
 				<p:column headerText="E-mail">
-					<h:outputLabel value="a@b.com" />
+					<h:outputLabel value="#{usuario.email}" />
 				</p:column>
 
 				<p:column headerText="Papel">
-					<h:outputLabel value="Cliente" />
+					<h:outputLabel value="#{usuario.papel.nome}" />
 				</p:column>
 
 				<p:column headerText="Ações" style="text-align: center" width="80">
