@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import com.BrTicOs.modelo.Usuario;
 import com.BrTicOs.repository.UsuarioRepository;
+import com.BrTicOs.util.jpa.Transactional;
 
 public class CadastroUsuarioService implements Serializable{
 
@@ -14,8 +15,16 @@ public class CadastroUsuarioService implements Serializable{
 	@Inject
 	private UsuarioRepository usuarioRepository;
 	
+	@Transactional
 	public Usuario salvar(Usuario usuario) {
-		return usuarioRepository.save(usuario);
+		
+		Usuario usuarioExistente = usuarioRepository.byName(usuario.getNome());
+		
+		if(usuarioExistente != null) {
+			throw new NegocioException("Já existe um Usuário com o nome informado!");
+		}
+		
+		return usuarioRepository.put(usuario);
 	}
 
 }

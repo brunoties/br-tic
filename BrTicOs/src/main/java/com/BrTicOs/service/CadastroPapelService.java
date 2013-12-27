@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import com.BrTicOs.modelo.Papel;
 import com.BrTicOs.repository.PapelRepository;
+import com.BrTicOs.util.jpa.Transactional;
 
 public class CadastroPapelService implements Serializable {
 
@@ -14,8 +15,16 @@ public class CadastroPapelService implements Serializable {
 	@Inject
 	private PapelRepository papelRepository;
 	
+	@Transactional
 	public Papel salvar(Papel papel) {
-		return papelRepository.save(papel);
+		
+		Papel papelExistente = papelRepository.byName(papel.getNome());
+		
+		if(papelExistente != null) {
+			throw new NegocioException("Já existe um Papel com o nome informado!");
+		}
+		
+		return papelRepository.put(papel);
 	}
 
 }

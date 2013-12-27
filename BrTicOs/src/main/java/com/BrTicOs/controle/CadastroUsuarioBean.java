@@ -54,7 +54,7 @@ public class CadastroUsuarioBean implements Serializable {
 	public void salvar() {
 		usuario = cadastroUsuarioService.salvar(usuario);
 		limpar();
-		FacesUtil.addSuccessMessage("Usuário cadastrado com sucesso");
+		FacesUtil.addSuccessMessage("Usuário cadastrado com sucesso.");
 	}
 	
 	private void limpar() {

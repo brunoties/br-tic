@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 
 import com.BrTicOs.modelo.Papel;
 
@@ -24,14 +24,17 @@ public class PapelRepository implements Serializable {
 		return manager.find(Papel.class, code);
 	}
 	
-	public Papel save(Papel papel) {
-		EntityTransaction trx = manager.getTransaction();
-		
-		trx.begin();
-		
-		papel = manager.merge(papel);
-		
-		trx.commit();
-		return papel;
+	public Papel byName(String nome) {
+		try {
+			return manager.createQuery("from Papel where upper(nome) = :nome", Papel.class)
+				.setParameter("nome", nome.toUpperCase())
+				.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
+	public Papel put(Papel papel) {		
+		return manager.merge(papel);
 	}
 }
