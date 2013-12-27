@@ -10,7 +10,7 @@
 	<ui:define name="corpo">
 
 		<f:metadata>
-			<f:viewParam name="fixBugRenderViewInJSF2-1-21" />
+			<f:viewParam name="fixBugRenderViewInJSF-2-1-21" />
 			<f:event listener="#{cadastroUsuarioBean.inicializar}"
 				type="preRenderView" />
 		</f:metadata>
@@ -50,7 +50,8 @@
 
 				<p:outputLabel value="Papel" for="papel" />
 
-				<p:selectOneMenu id="papel" value="#{cadastroUsuarioBean.usuario.papel}" >
+				<p:selectOneMenu id="papel" value="#{cadastroUsuarioBean.usuario.papel}" 
+					>
 					<f:selectItem itemLabel="Selecione" />
 					<f:selectItems value="#{cadastroUsuarioBean.papeis}" 
 						var="papel"

@@ -17,12 +17,14 @@ public class EntityManagerProducer {
 		factory = Persistence.createEntityManagerFactory("BR-TIC-PU");
 	}
 	
+	// produz uma EntityManager em um escopo de requisicao
 	@Produces @RequestScoped
 	public EntityManager createEntityManager() {
 		return factory.createEntityManager();
 	}
 	
-	public void closedEntityManager(@Disposes EntityManager manager) {
+	// ao termino do ciclo de vida do objeto do produtor, o @Disposes eh chamado
+	public void closeEntityManager(@Disposes EntityManager manager) {
 		manager.close();
 	}
 }

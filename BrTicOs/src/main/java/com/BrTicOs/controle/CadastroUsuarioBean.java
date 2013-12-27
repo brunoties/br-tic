@@ -8,10 +8,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 
 import com.BrTicOs.modelo.Papel;
 import com.BrTicOs.modelo.Usuario;
@@ -56,10 +52,9 @@ public class CadastroUsuarioBean implements Serializable {
 	}
 	
 	public void salvar() {
-		usuario.setPapel(papel);
 		usuario = cadastroUsuarioService.salvar(usuario);
 		limpar();
-		FacesUtil.addSuccessMessage("Papel cadastrado com sucesso");
+		FacesUtil.addSuccessMessage("Usuário cadastrado com sucesso");
 	}
 	
 	private void limpar() {
