@@ -9,6 +9,11 @@
 
 	<ui:define name="corpo">
 
+		<f:metadata>
+			<f:event listener="#{pesquisaUsuarioBean.pesquisar}" 
+				type="preRenderView" />
+		</f:metadata>
+
 		<h1>Pesquisar Usuário</h1>
 
 		<h:form id="frm-pesquisarUsuario">

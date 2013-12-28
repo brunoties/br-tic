@@ -9,12 +9,21 @@
 
 	<ui:define name="corpo">
 
+		<f:metadata>
+			<f:event listener="#{pesquisaPapelBean.pesquisar}" 
+				type="preRenderView" />
+		</f:metadata>
+
 		<h:form id="frm-pesquisarPapel">
 			<h1>Pesquisar Papel</h1>
+			
+			<p:messages autoUpdate="true" closable="true" />
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" id="btnPesquisar" />
+					<p:commandButton value="Pesquisar" id="btnPesquisar" 
+						action="#{pesquisaPapelBean.pesquisar}"
+						update="@form"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
@@ -25,7 +34,8 @@
 			<p:panelGrid columns="2" style="margin-top: 20px"
 				columnClasses="rotulo, campo">
 				<p:outputLabel value="Nome" for="pesquisarNome" />
-				<p:inputText id="pesquisarNome" />
+				<p:inputText id="pesquisarNome" 
+					value="#{pesquisaPapelBean.filtro.nome}"/>
 			</p:panelGrid>
 
 			<p:dataTable value="#{pesquisaPapelBean.papeisFiltrados}" var="papel"
@@ -34,12 +44,12 @@
 				paginatorAlwaysVisible="false" paginatorPosition="bottom">
 
 				<p:column headerText="Nome">
-					<h:outputText value="Atendente" />
+					<h:outputText value="#{papel.nome}" />
 				</p:column>
 
 				<p:column headerText="Descrição">
 					<h:outputText
-						value="Técnico responsável pelo atendimento ao cliente" />
+						value="#{papel.descricao}" />
 				</p:column>
 
 				<p:column headerText="Ações" style="text-align: center" width="80">
@@ -55,8 +65,6 @@
 				widgetVar="inclusaoPapel">
 
 				<p:messages autoUpdate="true" />
-
-				<ui:include src="/WEB-INF/template/papel/novo-papel.xhtml" />
 
 			</p:confirmDialog>
 

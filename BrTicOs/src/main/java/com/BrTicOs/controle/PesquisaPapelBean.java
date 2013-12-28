@@ -1,30 +1,43 @@
 package com.BrTicOs.controle;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-//import com.BrTicOs.modelo.Papel;
+import com.BrTicOs.modelo.Papel;
+import com.BrTicOs.repository.PapelRepository;
+import com.BrTicOs.repository.filter.PapelRepositoryFilter;
+
 @Named
 @ViewScoped
 public class PesquisaPapelBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private List<Integer> papeisFiltrados;
+	private List<Papel> papeisFiltrados;
+	
+	@Inject
+	private PapelRepository papelRepository;
+	
+	private PapelRepositoryFilter filtro;
+	
+	public void pesquisar() {
+		papeisFiltrados = papelRepository.filtrados(filtro);
+	}
 	
 	public PesquisaPapelBean() {
-		this.papeisFiltrados = new ArrayList<Integer>();
-		for(int i = 0; i < 50; i++) {
-			this.papeisFiltrados.add(i);
-		}
+		filtro = new PapelRepositoryFilter();
 	}
 
-	public List<Integer> getPapeisFiltrados() {
+	public List<Papel> getPapeisFiltrados() {
 		return papeisFiltrados;
+	}
+
+	public PapelRepositoryFilter getFiltro() {
+		return filtro;
 	}
 
 }
